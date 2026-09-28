@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillMate — Find Your People in Lucknow</title>
+<meta name="description" content="Community-first hobby platform. Discover circles near you, join activities, meet people at your skill level.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-circle">🌿</div>
+      SkillMate
+    </div>
+    <div class="nav-actions">
+      <span id="userName" class="user-name"></span>
+      <button id="loginBtn" class="nav-cta">Login with Google</button>
+      <button id="logoutBtn" class="nav-cta" style="display:none;">Logout</button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Lucknow · BBDNITM Pilot</div>
+  <h1>Find something you love.<br><em>Find people who do too.</em></h1>
+  <p>Discover hobby circles near you on the map. Join, chat, and meet people at your skill level.</p>
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="document.getElementById('loginBtn').click()">Get Started Free →</button>
+    <button class="btn btn-secondary" onclick="document.getElementById('mapSection').scrollIntoView({behavior:'smooth'})">See the Map</button>
+  </div>
+</div>
+
+<section id="mapSection">
+  <div class="section-label">Explore on Map</div>
+  <h2 class="section-title">Circles around Lucknow</h2>
+  <p class="section-sub">Click on a pin to see circle details.</p>
+  <div class="map-container">
+    <div id="map"></div>
+    <div class="map-legend">
+      <span>📍 You</span>
+      <span>🟢 Circles</span>
+    </div>
+  </div>
+</section>
+
+<section id="discover">
+  <div class="section-label">Discover</div>
+  <h2 class="section-title">All circles</h2>
+  <p class="section-sub">Real circles created by real people</p>
+  <div class="cards-grid" id="circleList">
+    <div class="loading-skeleton"></div>
+    <div class="loading-skeleton"></div>
+    <div class="loading-skeleton"></div>
+  </div>
+</section>
+
+<section id="hostSection" style="display:none;">
+  <div class="section-label">Host</div>
+  <h2 class="section-title">Create a Circle</h2>
+  <p class="section-sub">Pick location on the map — drag the pin</p>
+  <form id="createForm" class="host-form">
+    <input type="text" id="circleName" placeholder="Circle name (e.g., Sunday Cycling)" required>
+    <input type="text" id="circleLocationName" placeholder="Location name (e.g., Hazratganj)" required>
+    <select id="circleCategory">
+      <option value="Cycling">🚴 Cycling</option>
+      <option value="Reading">📚 Reading</option>
+      <option value="Gym">💪 Gym</option>
+      <option value="Photography">📷 Photography</option>
+      <option value="Music">🎵 Music</option>
+      <option value="Running">🏃 Running</option>
+      <option value="Other">✨ Other</option>
+    </select>
+    <div class="form-map-label">Pin your location on the map:</div>
+    <div id="formMap" class="form-map"></div>
+    <input type="hidden" id="circleLat">
+    <input type="hidden" id="circleLng">
+    <button type="submit" class="btn btn-primary">Create Circle</button>
+  </form>
+</section>
+
+<div id="chatModal" class="chat-modal">
+  <div class="chat-window">
+    <div class="chat-header">
+      <div>
+        <h3 id="chatTitle">Circle Chat</h3>
+        <span id="chatSubtitle" class="chat-subtitle">Loading...</span>
+      </div>
+      <button class="chat-close" onclick="closeChat()">✕</button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input-wrap">
+      <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button onclick="sendMessage()" class="chat-send">Send</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="footer-logo-circle">🌿</div>
+      SkillMate
+    </div>
+    <p class="footer-tagline">One community for hobbies, activities, places & connections.</p>
+    <div class="footer-bottom">
+      <span>© 2026 SkillMate · Team Spark</span>
+      <span>BBDNITM · B.Tech CSE (AI/ML)</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
